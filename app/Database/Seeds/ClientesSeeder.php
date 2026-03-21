@@ -10,22 +10,22 @@ class ClientesSeeder extends Seeder
     {
         $data = [
             [
-                "apellidos" => "Contreras Pachas",
-                "nombres"   => "Carolina",
-                "dni"       => "44556677",
-                "telefono"  => "956111222"
+                "apellidos" => "Salas Vasquez",
+                "nombres"   => "Fabian",
+                "dni"       => "74064842",
+                "telefono"  => "936255244"
             ],
             [
-                "apellidos" => "Peñaloza Mejía",
-                "nombres"   => "Gabriela",
-                "dni"       => "77441100",
-                "telefono"  => "956000111"
+                "apellidos" => "Apolaya Mendoza",
+                "nombres"   => "David",
+                "dni"       => "78854522",
+                "telefono"  => "955240111"
             ],
             [
-                "apellidos" => "Salvatierra Mendoza",
-                "nombres"   => "Esther",
-                "dni"       => "74748585",
-                "telefono"  => "956777111"
+                "apellidos" => "Palacios Gonzales",
+                "nombres"   => "Leonardo",
+                "dni"       => "74558211",
+                "telefono"  => "988541254"
             ]
         ]; //fin $data
 

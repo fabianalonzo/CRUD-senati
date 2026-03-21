@@ -11,21 +11,21 @@ class ProductosSeeder extends Seeder
         $data = [
             [
                 "tipo" => "Electrónico",
-                "descripcion"   => "Audífonos inalámbricos con cancelación de ruido",
-                "precio"       => 199.99,
-                "stock"  => 50
+                "descripcion"   => "laptop lenovo",
+                "precio"       => 2599.90,
+                "stock"  => 20
             ],
             [
-                "tipo" => "Hogar",
-                "descripcion"   => "Licuadora de 1.5L con 5 velocidades",
-                "precio"       => 89.90,
-                "stock"  => 30
+                "tipo" => "Domestico",
+                "descripcion"   => "Sofa",
+                "precio"       => 489.90,
+                "stock"  => 15
             ],
             [
-                "tipo" => "Ropa",
-                "descripcion"   => "Camiseta de algodón unisex color negro",
-                "precio"       => 25.50,
-                "stock"  => 100
+                "tipo" => "Vestimenta",
+                "descripcion"   => "Terno y camisa",
+                "precio"       => 65.50,
+                "stock"  => 65
             ]
         ]; //fin $data
 

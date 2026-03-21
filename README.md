@@ -1,69 +1,113 @@
-# CodeIgniter 4 Application Starter
+# Sistema CRUD - SENATI
 
-## What is CodeIgniter?
+Aplicación web construida con CodeIgniter 4 orientada a la gestión de clientes, productos y proveedores mediante operaciones básicas de tipo CRUD.
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+## Descripción
 
-This repository holds a composer-installable app starter.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+Este sistema permite ejecutar las operaciones esenciales como crear, listar, actualizar y eliminar registros dentro de una base de datos denominada **senati**. Además, hace uso de migraciones y seeders para administrar la estructura y los datos de manera organizada. El proyecto está diseñado como práctica del patrón MVC utilizando CodeIgniter 4.
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+## Tecnologías utilizadas
 
-You can read the [user guide](https://codeigniter.com/user_guide/)
-corresponding to the latest version of the framework.
+- PHP 8.2 o superior  
+- CodeIgniter 4  
+- MySQL o MariaDB  
+- HTML, CSS y JavaScript  
 
-## Installation & updates
+## Funcionalidades
 
-`composer create-project codeigniter4/appstarter` then `composer update` whenever
-there is a new release of the framework.
+### Clientes
 
-When updating, check the release notes to see if there are any changes you might need to apply
-to your `app` folder. The affected files can be copied or merged from
-`vendor/codeigniter4/framework/app`.
+- Permite registrar nuevos clientes  
+- Permite visualizar la lista de clientes  
+- Permite modificar la información de clientes existentes  
+- Permite eliminar registros de clientes  
 
-## Setup
+### Productos
 
-Copy `env` to `.env` and tailor for your app, specifically the baseURL
-and any database settings.
+- Permite registrar productos  
+- Permite listar productos  
+- Permite actualizar datos de productos  
+- Permite eliminar productos  
 
-## Important Change with index.php
+### Proveedores
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+- Permite registrar proveedores  
+- Permite listar proveedores  
+- Permite editar información de proveedores  
+- Permite eliminar proveedores  
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+## Rutas principales
 
-**Please** read the user guide for a better explanation of how CI4 works!
+- /clientes  
+- /productos  
+- /proveedores  
 
-## Repository Management
+## Base de Datos
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+**Nombre de la base de datos:** senati  
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
+### Tabla: clientes
 
-## Server Requirements
+- id  
+- apellidos  
+- nombres  
+- dni  
+- telefono  
 
-PHP version 8.2 or higher is required, with the following extensions installed:
+### Tabla: productos
 
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
+- id  
+- tipo  
+- descripcion  
+- precio  
+- stock  
 
-> [!WARNING]
-> - The end of life date for PHP 7.4 was November 28, 2022.
-> - The end of life date for PHP 8.0 was November 26, 2023.
-> - The end of life date for PHP 8.1 was December 31, 2025.
-> - If you are still using below PHP 8.2, you should upgrade immediately.
-> - The end of life date for PHP 8.2 will be December 31, 2026.
+### Tabla: proveedores
 
-Additionally, make sure that the following extensions are enabled in your PHP:
+- id  
+- razonsocial  
+- direccion  
+- ruc  
+- telefono  
+- representante  
 
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+## Migraciones y Seeders
+
+### Migraciones
+
+- Se debe crear la base de datos **senati**  
+- Configurar el archivo `.env` con los datos de conexión  
+- Generar una migración con el comando:  
+
+```bash
+php spark make:migration NombreArchivo
+```
+
+- Definir la estructura de las tablas, tipos de datos y restricciones  
+- Ejecutar la migración con:  
+
+```bash
+php spark migrate
+```
+
+- Para revertir cambios usar:  
+
+```bash
+php spark migrate:rollback
+```
+
+### Seeders
+
+Se utilizan para cargar datos iniciales o de prueba en la base de datos.
+
+- Crear un seeder con:  
+
+```bash
+php spark make:seeder ClientesSeeder
+```
+
+- Ejecutar el seeder con:  
+
+```bash
+php spark db:seed ClientesSeeder
+```

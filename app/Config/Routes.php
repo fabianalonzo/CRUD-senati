@@ -48,3 +48,4 @@ $routes->get('/productos/buscar/(:num)', 'Producto::buscar/$1'); // Antes de act
 $routes->get('/vehiculos', 'Vehiculo::index');
 //BD > Modelo > Controlador > Ruta > JS > HTML
 $routes->get('/vehiculos/listar', 'Vehiculo::getVehiculos');
+$routes->get('/marcas/listar', 'Marca::getMarcas');

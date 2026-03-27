@@ -18,7 +18,7 @@
                     <th>Acciones</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="content-vehiculos">
 
             </tbody>
         </table>
@@ -76,6 +76,50 @@
         </div>
     </div>
 </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function(){
+
+    const tabla = document.querySelector("#content-vehiculos")
+
+    async function obtenerVehiculos(){
+      try {
+        const response = await fetch(`<?= base_url('vehiculos/listar') ?>`);
+        const data = await response.json();
+        
+        if(response.status != 200){return; }
+
+        if (!data){return; }
+
+        tabla.innerHTML = ``
+
+        //¡Todo OK procedemos!
+        data.forEach(element => {
+          tabla.innerHTML += `
+          <tr>
+            <td>${element.id}</td>
+            <td>${element.marca}</td>
+            <td>${element.modelo}</td>
+            <td>${element.anio}</td>
+            <td>${element.color}</td>
+            <td>${element.precio}</td>
+            <td>
+             <a href='#' class='btn btn-sm btn-info'>Editar</a>
+             <a href='#' class='btn btn-sm btn-danger'>Eliminar</a>
+            </td>
+          </tr>
+          `
+        });
+
+      } catch (e) {
+        console.error("Error al obtener los datos", e);
+      }
+    }
+
+    obtenerVehiculos();
+
+  })
+</script>
 
 <!-- Fin zona de modal -->
 <?= $footer ?>

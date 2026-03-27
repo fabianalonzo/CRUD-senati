@@ -44,3 +44,5 @@ $routes->post('/productos/guardar', 'Producto::registrarProducto'); // Envía lo
 $routes->post('/productos/actualizar', 'Producto::actualizarProducto'); // Actualiza los datos del form a la tabla
 $routes->get('/productos/eliminar/(:num)', 'Producto::eliminar/$1'); // Eliminar un producto
 $routes->get('/productos/buscar/(:num)', 'Producto::buscar/$1'); // Antes de actualizar tenemos que buscar
+
+$routes->get('/vehiculos', 'Vehiculo::index');

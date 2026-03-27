@@ -121,6 +121,11 @@
           return;
         }
 
+        $('#modal-vehiculos').modal('hide');
+
+        //Reiniciar/Vaciar formulario
+        formulario.reset();
+
         console.log(data)
 
       } catch (e) {

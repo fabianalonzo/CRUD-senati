@@ -46,3 +46,5 @@ $routes->get('/productos/eliminar/(:num)', 'Producto::eliminar/$1'); // Eliminar
 $routes->get('/productos/buscar/(:num)', 'Producto::buscar/$1'); // Antes de actualizar tenemos que buscar
 
 $routes->get('/vehiculos', 'Vehiculo::index');
+//BD > Modelo > Controlador > Ruta > JS > HTML
+$routes->get('/vehiculos/listar', 'Vehiculo::getVehiculos');

@@ -31,7 +31,7 @@ class Vehiculo extends BaseController
     $vehiculo = new VehiculoModel();
 
     //Todos los campos requeridos, deberán ser enviados en un JSON
-    $data = $this->response->getJSON();
+    $data = $this->request->getJSON();
 
     if ($vehiculo->insert($data)){
       return $this->response->setJSON([
@@ -47,5 +47,3 @@ class Vehiculo extends BaseController
   }
 
 }
-
-?>

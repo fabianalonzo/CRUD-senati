@@ -1,44 +1,47 @@
 <?php
 
 namespace App\Models;
+
 use CodeIgniter\Model;
 
-class VehiculoModel extends Model{
+class VehiculoModel extends Model
+{
+    protected $table = "vehiculos";
+    protected $primaryKey = 'id';
+    protected $returnType = 'array';
+    protected $allowedFields = ['idmarca', 'modelo', 'anio', 'color', 'precio', 'created_at', 'updated_at'];
 
-  protected $table = "vehiculos";
-  protected $primaryKey = "id";
-  protected $returnType = "array";
-  protected $allowedFields = ["idMarca", "modelo", "anio", "color", "precio"];
+    // Campos de auditoría => ¿Cuándo se creó?, ¿Cuándo se modificó?
+    protected $useTimestapms = true;
+    protected $createdField = "created_at"; // Campo Tabla Vehículos
+    protected $updatedField = "updated_at"; // Campo Tabla Vehículos
 
-  //Campos de auditoria => ¿Cuándo se creo?, ¿Cuándo se modificó?
-  protected $useTimestamps = true;
-  protected $createdField = "create_at"; //Campo tabla vehiculos
-  protected $updatedField = "update_at"; //Campo tabla vehiculos
+    // Métodos integrados:
+    // findAll() => Obtener todos los registros | SELECT * FROM vehiculos
+    // find() => Obtener un registro | SELECT * FROM vehiculos WHERE id = 1
+    // insert() => Insertar un nuevo registro | INSERT INTO vehiculos (idmarca, modelo, anio, color, precio) VALUES (1, 'Corolla', 2020, 'Rojo', 20000)
+    // delete() => Eliminar un registro | DELETE FROM vehiculos WHERE id = 1
+    // update() => Actualizar un registro | UPDATE vehiculos SET modelo = 'Civic' WHERE id = 1
 
-  //Métodos integrados:
-  //findAll():    Obtener todos los registros
-  //find():       Obtener un registro
-  //insert()      Agregar un nuevo registro
-  //delete():     Eliminacion física dr un registro
-  //update():     Actualización
+    // ¿Y qué sucede si necesito un método personalizado? Ejemplo: CONSULTA MULTITABLA
+    // QUERY BUILDER => Constructor de consultas
+    public function obtenerVehiculos()
+    {
+        return $this->select("vehiculos.*, marcas.marca")
+            ->join("marcas", "marcas.id = vehiculos.idmarca")
+            ->findAll();
+    }
 
-  //¿?Y que suscede si necesito un metodo personalizado? Ejemplo: Consulta Multitabla
-  public function ObtenerVehiculos(){
-    return $this->select("vehiculos.*, marcas.marca")
-    ->join("marcas", "marcas.id = vehiculos.idmarca")
-    ->findAll();
-  }
-
-  //En caso la coinsulta sea muy compleja, podemos escribir nuestro propio SQL
-  public function obtenerVehiculoSQL(){
-    $sql = "
-    SELECT
-      vehiculos.*,
-      marcas.marca
-      FROM vehiculos
-      INNER JOIN  marcas ON marcas.id = vehiculos.idmarca
-    ";
-    return $this->db->query($sql)->getResultArray();
-  }
-
+    // En caso la consulta sea muy compleja, podemos escribir nuestro SQL
+    public function obtenerVehiculoSQL()
+    {
+        $sql = "
+        SELECT 
+        vehiculos.*, 
+        marcas.marca 
+        FROM vehiculos 
+        INNER JOIN marcas ON marcas.id = vehiculos.idmarca
+        ";
+        return $this->db->query($sql)->getResultArray();
+    }
 }

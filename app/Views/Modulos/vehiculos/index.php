@@ -38,7 +38,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="" id="formulario-vehiculos" autocapitalize="off">
+        <form id="formulario-vehiculos" autocapitalize="off">
           <div class="form-group">
             <label for="marcas">Marca:</label>
             <select name="marcas" id="marcas" class="form-control rounded-0" required>
@@ -82,6 +82,38 @@
 
     const tabla = document.querySelector("#content-vehiculos")
     const listaMarcas = document.querySelector("#marcas")
+    const formulario = document.querySelector("#formulario-vehiculos")
+
+    //Funciones asincronas
+    async function registrarVehiculo(){
+      try {
+
+        const vehiculo = {
+          idmarca: listaMarcas.value,
+          modelo: document.querySelector("#modelo").value,
+          anio: document.querySelector("#anio").value,
+          color: document.querySelector("#color").value,
+          precio: document.querySelector("#precio").value
+        }
+
+        const response = await fetch(`<?= base_url('vehiculos/registrar') ?>`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(vehiculo)
+        })
+
+        const data = await response.json()
+
+        if (!data.success) {
+          return;
+        }
+
+        console.log(data)
+
+      } catch (e) {
+        console.error("No se logró registrar:", e)
+      }
+    }
 
     async function obtenerMarcas() {
       try {
@@ -141,6 +173,15 @@
       }
     }
 
+    //Eventos
+    formulario.addEventListener("submit", function (event){
+      event.preventDefault() //STOP
+
+      if (!confirm("¿Registramos este vehículo?")) { return; }
+      registrarVehiculo()//GOOOOOOOOOOOOOOOOOOOO
+    })
+
+    //Funcion autoejecucion
     obtenerVehiculos();
     obtenerMarcas();
 

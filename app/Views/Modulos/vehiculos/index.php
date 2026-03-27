@@ -84,6 +84,18 @@
     const listaMarcas = document.querySelector("#marcas")
     const formulario = document.querySelector("#formulario-vehiculos")
 
+    function notificar(mensaje = ''){
+      swal.fire({
+        text: mensaje,
+        icon: 'info',
+        position: 'top-end',
+        timer: 2500,
+        timerProgressBar: true,
+        showConfirmButton: false,
+        toast: true
+      })
+    }
+
     //Funciones asincronas
     async function registrarVehiculo(){
       try {
@@ -103,6 +115,7 @@
         })
 
         const data = await response.json()
+        notificar(data.message)
 
         if (!data.success) {
           return;

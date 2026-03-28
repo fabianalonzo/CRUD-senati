@@ -17,11 +17,11 @@ $routes->get('/senati', 'Home::index'); //Primer ejemplo de navegación
 //$routes->verbo('/ruta/', 'Controlador::MetodoAccion');
 //Nota: Es posible crear más de una ruta para una vista
 
-$routes->get('/programador', 'Carrera::showIngenieria');
-$routes->get('/coder', 'Carrera::showIngenieria');
+// $routes->get('/programador', 'Carrera::showIngenieria');
+// $routes->get('/coder', 'Carrera::showIngenieria');
 
-$routes->get('/creativo', 'Carrera::showDesign');
-$routes->get('/marketing', 'Carrera::showDesign');
+// $routes->get('/creativo', 'Carrera::showDesign');
+// $routes->get('/marketing', 'Carrera::showDesign');
 
 //Nuevas rutas para navegar desde DASHBOARD
 $routes->get('/clientes', 'Cliente::index'); // http://localhost:8080/clientes // Muestra la tabla con datos
@@ -44,3 +44,9 @@ $routes->post('/productos/guardar', 'Producto::registrarProducto'); // Envía lo
 $routes->post('/productos/actualizar', 'Producto::actualizarProducto'); // Actualiza los datos del form a la tabla
 $routes->get('/productos/eliminar/(:num)', 'Producto::eliminar/$1'); // Eliminar un producto
 $routes->get('/productos/buscar/(:num)', 'Producto::buscar/$1'); // Antes de actualizar tenemos que buscar
+
+$routes->get('/productosX', 'ProductoX::index');
+// BD > Modelo > Controlador > Ruta > JS > VistaHTML
+$routes->get('/productosX/listar', 'ProductoX::getProductoX'); // Ruta para obtener los datos de los productos en formato JSON
+$routes->post('/productosX/registrar', 'ProductoX::registrarProductoX'); // Ruta para registrar un nuevo producto desde el formulario en formato JSON  
+
